@@ -10,7 +10,7 @@ contract Vault {
     mapping(IERC20 => mapping(address => uint256)) public balanceOf;
 
     /// @dev array of active users who have deposited on the vault at least once
-    address[] users;
+    address[] private users;
 
     /**
      * @notice Event emitted when deposit tokens on the vault
