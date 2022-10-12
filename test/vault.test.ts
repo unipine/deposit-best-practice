@@ -9,7 +9,6 @@ describe('Vault', () => {
   let user2: SignerWithAddress;
   let user3: SignerWithAddress;
 
-  let amount = 100000;
   let vault: Vault;
   let token: MockERC20;
 
@@ -107,33 +106,4 @@ describe('Vault', () => {
       expect(topUsers.top2User).to.be.equal(user3.address);
     })
   })
-  // it('top investors', async () => {
-  //   const {
-  //     Vault,
-  //     Token,
-  //     accounts: [user1, user2],
-  //   } = vars;
-
-  //   let investors = await Vault.topInvestors(Token.address);
-  //   expect(investors.firstInvestor).to.be.eq(ethers.constants.AddressZero);
-  //   expect(investors.secondInvestor).to.be.eq(ethers.constants.AddressZero);
-
-  //   // case1
-  //   await Vault.deposit(Token.address, 2 * amount);
-  //   investors = await Vault.topInvestors(Token.address);
-  //   expect(investors.firstInvestor).to.be.eq(user1.address);
-  //   expect(investors.secondInvestor).to.be.eq(ethers.constants.AddressZero);
-
-  //   // case2
-  //   await Vault.connect(user2.signer).deposit(Token.address, 3 * amount);
-  //   investors = await Vault.topInvestors(Token.address);
-  //   expect(investors.firstInvestor).to.be.eq(user2.address);
-  //   expect(investors.secondInvestor).to.be.eq(user1.address);
-
-  //   // case3
-  //   await Vault.connect(user2.signer).withdraw(Token.address, 2 * amount);
-  //   investors = await Vault.topInvestors(Token.address);
-  //   expect(investors.firstInvestor).to.be.eq(user1.address);
-  //   expect(investors.secondInvestor).to.be.eq(user2.address);
-  // });
 });

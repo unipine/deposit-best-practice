@@ -75,7 +75,7 @@ contract Vault {
 
     /**
      * @notice External function that withdraws tokens from the vault
-     * @dev Emit Withdraw event when success
+     * @dev Emit Withdraw event when success, no need to add reentrancy guard cuz it changes states before transfers
      * @param token token address to withdraw
      * @param amount amount of token to withdraw
      */
