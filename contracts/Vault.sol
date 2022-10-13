@@ -1,9 +1,11 @@
 //SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+pragma solidity 0.8.16;
 
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-contract Vault {
+contract Vault is Ownable, ReentrancyGuard {
     using SafeERC20 for IERC20;
 
     /// @dev token => user => balance
@@ -18,7 +20,7 @@ contract Vault {
      * @param from depositor's address
      * @param amount deposited amount of token
      */
-    event Deposit(IERC20 indexed token, address indexed from, uint256 amount);
+    event Deposited(IERC20 indexed token, address indexed from, uint256 amount);
 
     /**
      * @notice Event emitted when withdraw from the vault
@@ -26,7 +28,7 @@ contract Vault {
      * @param to withdrawer's address
      * @param amount withdrawn amount
      */
-    event Withdraw(IERC20 indexed token, address indexed to, uint256 amount);
+    event Withdrawn(IERC20 indexed token, address indexed to, uint256 amount);
 
     /**
      * @notice External view function that returns top 2 users with the most of funds in the pool
@@ -70,7 +72,7 @@ contract Vault {
         }
         balanceOf[token][msg.sender] += amount;
 
-        emit Deposit(token, msg.sender, amount);
+        emit Deposited(token, msg.sender, amount);
     }
 
     /**
@@ -88,6 +90,6 @@ contract Vault {
         balanceOf[token][msg.sender] -= amount;
         token.safeTransfer(msg.sender, amount);
 
-        emit Withdraw(token, msg.sender, amount);
+        emit Withdrawn(token, msg.sender, amount);
     }
 }

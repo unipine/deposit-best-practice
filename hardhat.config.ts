@@ -9,7 +9,7 @@ import 'hardhat-gas-reporter';
 import { HardhatUserConfig } from 'hardhat/types';
 
 export default {
-	solidity: '0.8.9',
+	solidity: '0.8.16',
 	settings: {
 		optimizer: {
 			enabled: true,
